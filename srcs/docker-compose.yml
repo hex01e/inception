@@ -1,0 +1,102 @@
+version: '3.8'
+services:
+
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    build: requirements/mariadb/
+    networks:
+      - net
+    volumes:
+      - mysql:/var/lib/mysql
+    env_file: .env
+
+
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    build: requirements/wordpress
+    networks:
+      - net
+    volumes:
+      - www:/var/www/wordpress
+    env_file: .env
+    depends_on:
+      - mariadb
+
+  nginx:
+    image: nginx
+    ports:
+      - 443:443
+    container_name: nginx
+    build: requirements/nginx/
+    networks:
+      - net
+    volumes:
+      - www:/var/www/wordpress
+    env_file: .env
+    depends_on:
+      - wordpress
+
+  adminer:
+    image: adminer
+    ports:
+      - 9000:9000
+    container_name: adminer
+    build: requirements/bonus/adminer/
+    networks:
+      - net
+    env_file: .env
+
+  static:
+    image: website
+    ports:
+      - 8080:8080
+    container_name: website
+    build: requirements/bonus/website/
+    networks:
+      - net
+    env_file: .env
+
+  ftp:
+    image: frp
+    ports:
+      - 20:20
+      - 21:21
+    container_name: ftp
+    build: requirements/bonus/ftp/
+    volumes:
+      - www:/var/www/wordpress
+    networks:
+      - net
+    env_file: .env
+
+  redis:
+    image: redis
+    ports:
+      - 6380:6380
+    container_name: redis
+    build: requirements/bonus/redis/
+    networks:
+      - net
+    env_file: .env
+
+networks:
+  net:
+    name: net
+
+volumes:
+  www:
+    name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/houmanso/data/wordpress
+  mysql:
+    name: mysql
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/houmanso/data/mysql

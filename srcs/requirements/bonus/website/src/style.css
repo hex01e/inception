@@ -1,0 +1,53 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: "Jaro", sans-serif;
+}
+
+body {
+    background-color: #31363F;
+}
+
+header {
+    background: #222831;
+}
+header * {
+    line-height: 50px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 20px;
+}
+
+.logo {
+    color:white;
+    font-weight: bold;
+}
+
+.navbar-links {
+    justify-content: space-between;
+}
+
+.navbar-link {
+    color: white;
+    text-decoration: none;
+    margin: 0px 10px;
+}
+
+.navbar-link:hover, .active {
+    color: #76ABAE;
+}
+.welcome {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.welcome_text, .side_img{
+    width: 50%;
+    /* margin: 40%  10%; */
+    color: white;
+}
