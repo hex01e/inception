@@ -81,6 +81,16 @@ services:
       - net
     env_file: .env
 
+  cadvisor:
+    image: cadvisor
+    ports:
+      - 5555:5555
+    container_name: cadvisor
+    build: requirements/bonus/cadvisor/
+    networks:
+      - net
+    env_file: .env
+
 networks:
   net:
     name: net
