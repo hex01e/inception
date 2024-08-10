@@ -41,7 +41,7 @@ services:
   adminer:
     image: adminer
     ports:
-      - 9000:9000
+      - 5000:5000
     container_name: adminer
     build: requirements/bonus/adminer/
     networks:
@@ -89,6 +89,10 @@ services:
     build: requirements/bonus/cadvisor/
     networks:
       - net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
     env_file: .env
 
 networks:

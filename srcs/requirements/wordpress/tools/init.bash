@@ -31,4 +31,6 @@ wp user create $WP_USER  $WP_EMAIL --user_pass=$WP_PASS --role=author --allow-ro
 wp plugin install redis-cache --activate --allow-root
 wp redis enable --allow-root
 
+wp option update default_comment_status 'open' --allow-root
+
 exec php-fpm7.4 -F
