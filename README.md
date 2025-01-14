@@ -4,8 +4,6 @@
 
 **Inception** is a system administration project aimed at setting up a virtualized infrastructure using Docker. The project uses `docker-compose` to orchestrate multiple containers, each serving a specific service. It provides a hands-on learning experience in Dockerization and system configuration.
 
----
-
 ## Features
 
 - **Core Services**:
@@ -18,8 +16,6 @@
 - **Network**: Custom Docker network securely connects all services.
 - **Resilience**: Containers automatically restart upon crashes.
 
----
-
 ## Bonus Features
 
 - **Redis Cache**: Improves WordPress performance by managing cached data effectively.
@@ -28,8 +24,6 @@
 - **Adminer**: Simplifies MariaDB database management.
 - **cAdvisor**: is included to monitor and analyze resource usage and performance of running containers.
 
----
-
 ## Requirements
 
 - **Docker & Docker Compose**: Orchestrates and manages the containers.
@@ -37,8 +31,32 @@
   - Configuration data is managed using a `.env` file.
   - Sensitive data (e.g., passwords, API keys) is securely stored using Docker secrets.
 
----
-
+## Project strecture:
+```
+inception
+├── Makefile
+├── srcs/
+│   ├── .env
+│   ├── docker-compose.yml
+│   └── requirements/
+│       ├── mariadb/
+│       │   └── ... 
+│       ├── nginx/
+│       │   └── ...
+│       └── wordpress/
+│       │   └── ...
+│       └── bonus/
+│           └── adminer
+│               └── ...
+│           └── ftp
+│               └── ...
+│           └── cadvisor
+│               └── ...
+│           └── redis
+│               └── ...
+│           └── website
+│               └── ...
+```
 ## Setup Instructions
 
 Clone the repository and make:
@@ -47,4 +65,4 @@ Clone the repository and make:
    cd inception
    make
    ```
-   
+
